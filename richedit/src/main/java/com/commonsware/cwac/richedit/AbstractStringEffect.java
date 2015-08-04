@@ -25,10 +25,15 @@ abstract public class AbstractStringEffect<T extends CharacterStyle>
   abstract T buildStringSpan(String value);
 
   @Override
-  public boolean existsInSelection(RichEditText editor) {
+  public final boolean existsInSelection(RichEditText editor) {
     Selection selection=new Selection(editor);
     Spannable str=editor.getText();
 
+    return existsInSelection(str, selection);
+  }
+
+  @Override
+  public boolean existsInSelection(Spannable str, Selection selection) {
     return(getStringSpans(str, selection).length > 0);
   }
 

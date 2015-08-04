@@ -20,9 +20,15 @@ import android.text.style.AlignmentSpan;
 import com.commonsware.cwac.richtextutils.Selection;
 
 public class LineAlignmentEffect extends Effect<Layout.Alignment> {
+
   @Override
-  public boolean existsInSelection(RichEditText editor) {
+  public final boolean existsInSelection(RichEditText editor) {
     return(valueInSelection(editor)!=null);
+  }
+
+  @Override
+  public boolean existsInSelection(Spannable str, Selection selection) {
+    throw new UnsupportedOperationException();
   }
 
   @Override
