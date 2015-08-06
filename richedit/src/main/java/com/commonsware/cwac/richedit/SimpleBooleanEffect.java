@@ -26,9 +26,15 @@ public class SimpleBooleanEffect<T> extends Effect<Boolean> {
   }
 
   @Override
-  public boolean existsInSelection(RichEditText editor) {
+  public final boolean existsInSelection(RichEditText editor) {
     Selection selection=new Selection(editor);
     Spannable str=editor.getText();
+
+    return existsInSelection(str, selection);
+  }
+
+  @Override
+  public boolean existsInSelection(Spannable str, Selection selection) {
     boolean result=false;
 
     if (selection.getStart() != selection.getEnd()) {
@@ -38,9 +44,9 @@ public class SimpleBooleanEffect<T> extends Effect<Boolean> {
     }
     else {
       T[] spansBefore=
-          str.getSpans(selection.getStart() - 1, selection.getEnd(), clazz);
+              str.getSpans(selection.getStart() - 1, selection.getEnd(), clazz);
       T[] spansAfter=
-          str.getSpans(selection.getStart(), selection.getEnd() + 1, clazz);
+              str.getSpans(selection.getStart(), selection.getEnd() + 1, clazz);
 
       result=(spansBefore.length > 0 && spansAfter.length > 0);
     }

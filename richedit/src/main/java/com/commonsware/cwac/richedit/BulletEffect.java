@@ -19,13 +19,18 @@ import android.text.style.BulletSpan;
 import com.commonsware.cwac.richtextutils.Selection;
 
 public class BulletEffect extends Effect<Boolean> {
-  @Override
-  public boolean existsInSelection(RichEditText editor) {
-    Spannable str=editor.getText();
-    Selection selection=new Selection(editor).extendToFullLine(str);
 
-    return (getBulletSpans(str, selection).length > 0);
-  }
+    @Override
+    public boolean existsInSelection(Spannable str, Selection selection) {
+        return (getBulletSpans(str, selection).length > 0);
+    }
+
+   @Override
+   public boolean existsInSelection(RichEditText editor) {
+      Spannable str=editor.getText();
+      Selection selection=new Selection(editor).extendToFullLine(str);
+      return  existsInSelection(str, selection);
+   }
 
   @Override
   public Boolean valueInSelection(RichEditText editor) {

@@ -15,8 +15,8 @@
 package com.commonsware.cwac.richedit;
 
 import android.text.Spannable;
-import android.text.style.AbsoluteSizeSpan;
 import android.text.style.CharacterStyle;
+
 import com.commonsware.cwac.richtextutils.Selection;
 
 abstract public class AbstractColorEffect<T extends CharacterStyle>
@@ -26,10 +26,15 @@ abstract public class AbstractColorEffect<T extends CharacterStyle>
   abstract T buildColorSpan(Integer value);
 
   @Override
-  public boolean existsInSelection(RichEditText editor) {
+  public final boolean existsInSelection(RichEditText editor) {
     Selection selection=new Selection(editor);
     Spannable str=editor.getText();
 
+    return existsInSelection(str, selection);
+  }
+
+  @Override
+  public boolean existsInSelection(Spannable str, Selection selection) {
     return(getColorSpans(str, selection).length > 0);
   }
 

@@ -19,11 +19,18 @@ import android.text.style.RelativeSizeSpan;
 import com.commonsware.cwac.richtextutils.Selection;
 
 public class RelativeSizeEffect extends Effect<Float> {
+
+
   @Override
-  public boolean existsInSelection(RichEditText editor) {
+  public final boolean existsInSelection(RichEditText editor) {
     Selection selection=new Selection(editor);
     Spannable str=editor.getText();
 
+    return existsInSelection(str, selection);
+  }
+
+  @Override
+  public boolean existsInSelection(Spannable str, Selection selection) {
     return(getRelativeSizeSpans(str, selection).length > 0);
   }
 

@@ -1,0 +1,46 @@
+
+# Android Studio
+*.iml
+.idea/
+
+# Files for the Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+
+# Gradle files
+.gradle/
+**build
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log Files
+**.log
+**.hprof
+
+# Proguard
+app/mapping.txt
+app/class_files.txt
+app/unused.txt
+app/seeds.txt
+
+# Calabash output
+app/src/calabashTest/*.png
+app/src/calabashTest/test_servers/
+
+# Crashlytics related
+**crashlytics-build.properties
+**com_crashlytics_export_strings.xml
+
+# Eclipse related
+.settings/
+proguard/
+
+
+.DS_Store
