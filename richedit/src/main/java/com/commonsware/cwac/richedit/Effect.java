@@ -28,7 +28,7 @@ import com.commonsware.cwac.richtextutils.Selection;
  * meaning the effect is a toggle (on or off), such as boldface.
  */
 abstract public class Effect<T> {
-  abstract public boolean existsInSelection(Spannable str, Selection selection);
+  abstract public boolean existsInSpannable(Spannable str, Selection selection);
   abstract public boolean existsInSelection(RichEditText editor);
   abstract public T valueInSelection(RichEditText editor);
   abstract public void applyToSelection(RichEditText editor, T add);

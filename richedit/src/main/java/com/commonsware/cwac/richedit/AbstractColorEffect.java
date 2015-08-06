@@ -30,11 +30,11 @@ abstract public class AbstractColorEffect<T extends CharacterStyle>
     Selection selection=new Selection(editor);
     Spannable str=editor.getText();
 
-    return existsInSelection(str, selection);
+    return existsInSpannable(str, selection);
   }
 
   @Override
-  public boolean existsInSelection(Spannable str, Selection selection) {
+  public boolean existsInSpannable(Spannable str, Selection selection) {
     return(getColorSpans(str, selection).length > 0);
   }
 

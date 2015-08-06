@@ -15,7 +15,6 @@
 package com.commonsware.cwac.richedit;
 
 import android.text.Spannable;
-import android.text.Spanned;
 import android.text.style.AbsoluteSizeSpan;
 import com.commonsware.cwac.richtextutils.Selection;
 
@@ -27,11 +26,11 @@ abstract public class AbsoluteSizeEffect extends Effect<Integer> {
     Selection selection=new Selection(editor);
     Spannable str=editor.getText();
 
-    return existsInSelection(str, selection);
+    return existsInSpannable(str, selection);
   }
 
   @Override
-  public boolean existsInSelection(Spannable str, Selection selection) {
+  public boolean existsInSpannable(Spannable str, Selection selection) {
     return(getAbsoluteSizeSpans(str, selection).length > 0);
   }
 

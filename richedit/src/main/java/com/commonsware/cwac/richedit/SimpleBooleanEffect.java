@@ -30,11 +30,11 @@ public class SimpleBooleanEffect<T> extends Effect<Boolean> {
     Selection selection=new Selection(editor);
     Spannable str=editor.getText();
 
-    return existsInSelection(str, selection);
+    return existsInSpannable(str, selection);
   }
 
   @Override
-  public boolean existsInSelection(Spannable str, Selection selection) {
+  public boolean existsInSpannable(Spannable str, Selection selection) {
     boolean result=false;
 
     if (selection.getStart() != selection.getEnd()) {

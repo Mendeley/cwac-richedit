@@ -21,7 +21,7 @@ import com.commonsware.cwac.richtextutils.Selection;
 public class BulletEffect extends Effect<Boolean> {
 
     @Override
-    public boolean existsInSelection(Spannable str, Selection selection) {
+    public boolean existsInSpannable(Spannable str, Selection selection) {
         return (getBulletSpans(str, selection).length > 0);
     }
 
@@ -29,7 +29,7 @@ public class BulletEffect extends Effect<Boolean> {
    public boolean existsInSelection(RichEditText editor) {
       Spannable str=editor.getText();
       Selection selection=new Selection(editor).extendToFullLine(str);
-      return  existsInSelection(str, selection);
+      return  existsInSpannable(str, selection);
    }
 
   @Override

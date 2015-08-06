@@ -26,11 +26,11 @@ public class RelativeSizeEffect extends Effect<Float> {
     Selection selection=new Selection(editor);
     Spannable str=editor.getText();
 
-    return existsInSelection(str, selection);
+    return existsInSpannable(str, selection);
   }
 
   @Override
-  public boolean existsInSelection(Spannable str, Selection selection) {
+  public boolean existsInSpannable(Spannable str, Selection selection) {
     return(getRelativeSizeSpans(str, selection).length > 0);
   }
 

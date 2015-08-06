@@ -27,7 +27,7 @@ public class LineAlignmentEffect extends Effect<Layout.Alignment> {
   }
 
   @Override
-  public boolean existsInSelection(Spannable str, Selection selection) {
+  public boolean existsInSpannable(Spannable str, Selection selection) {
     throw new UnsupportedOperationException();
   }
 
