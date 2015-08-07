@@ -53,18 +53,23 @@ abstract public class AbsoluteSizeEffect extends Effect<Integer> {
   }
 
   @Override
-  public void applyToSelection(RichEditText editor, Integer size) {
-    Selection selection=new Selection(editor);
-    Spannable str=editor.getText();
-
+  public void applyToSpannable(Spannable str, Selection selection, Integer size) {
     for (AbsoluteSizeSpan span : getAbsoluteSizeSpans(str, selection)) {
       str.removeSpan(span);
     }
 
     if (size != null) {
       str.setSpan(new AbsoluteSizeSpan(size, isDip()), selection.getStart(),
-                  selection.getEnd(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+              selection.getEnd(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
+  }
+
+  @Override
+  public void applyToSelection(RichEditText editor, Integer size) {
+    Selection selection=new Selection(editor);
+    Spannable str=editor.getText();
+
+    applyToSpannable(str, selection, size);
   }
 
   private AbsoluteSizeSpan[] getAbsoluteSizeSpans(Spannable str,

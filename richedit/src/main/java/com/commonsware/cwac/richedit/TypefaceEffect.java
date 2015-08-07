@@ -37,7 +37,8 @@ public class TypefaceEffect extends AbstractStringEffect<TypefaceSpan> {
     applyToSpannable(editor.getText(), new Selection(editor), family);
   }
 
-  void applyToSpannable(Spannable str, Selection selection,
+  @Override
+  public void applyToSpannable(Spannable str, Selection selection,
                         String family) {
     int prologueStart=Integer.MAX_VALUE;
     int epilogueEnd=-1;

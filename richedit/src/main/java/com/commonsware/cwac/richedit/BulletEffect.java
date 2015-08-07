@@ -55,22 +55,28 @@ public class BulletEffect extends Effect<Boolean> {
     }
   }
 
-  void applyToSelection(RichEditText editor, Selection bullets, Boolean add) {
-    Spannable str=editor.getText();
-    Selection selection=bullets.extendToFullLine(str);
+    @Override
+    public void applyToSpannable(Spannable str, Selection selection, Boolean add) {
+        for (BulletSpan span : getBulletSpans(str, selection)) {
+            str.removeSpan(span);
+        }
 
-    for (BulletSpan span : getBulletSpans(str, selection)) {
-      str.removeSpan(span);
+        if (add.booleanValue()) {
+            for (Selection chunk : selection.buildSelectionsForLines(str)) {
+                str.setSpan(new BulletSpan(), chunk.getStart(),
+                        chunk.getEnd(),
+                        Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+            }
+        }
     }
 
-    if (add.booleanValue()) {
-      for (Selection chunk : selection.buildSelectionsForLines(str)) {
-        str.setSpan(new BulletSpan(), chunk.getStart(),
-            chunk.getEnd(),
-            Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-      }
+
+    void applyToSelection(RichEditText editor, Selection bullets, Boolean add) {
+      Spannable str=editor.getText();
+      Selection selection=bullets.extendToFullLine(str);
+
+      applyToSpannable(str, selection, add);
     }
-  }
 
   private BulletSpan[] getBulletSpans(Spannable str,
                                       Selection selection) {

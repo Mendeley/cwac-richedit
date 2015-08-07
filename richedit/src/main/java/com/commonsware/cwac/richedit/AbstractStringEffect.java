@@ -56,13 +56,18 @@ abstract public class AbstractStringEffect<T extends CharacterStyle>
     Selection selection=new Selection(editor);
     Spannable str=editor.getText();
 
+    applyToSpannable(str, selection, value);
+  }
+
+  @Override
+  public void applyToSpannable(Spannable str, Selection selection, String value) {
     for (T span : getStringSpans(str, selection)) {
       str.removeSpan(span);
     }
 
     if (value != null) {
       str.setSpan(buildStringSpan(value), selection.getStart(),
-                  selection.getEnd(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+              selection.getEnd(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
   }
 }

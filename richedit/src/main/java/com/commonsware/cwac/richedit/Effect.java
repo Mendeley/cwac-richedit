@@ -32,4 +32,5 @@ abstract public class Effect<T> {
   abstract public boolean existsInSelection(RichEditText editor);
   abstract public T valueInSelection(RichEditText editor);
   abstract public void applyToSelection(RichEditText editor, T add);
+  abstract public void applyToSpannable(Spannable str, Selection selection, T b);
 }

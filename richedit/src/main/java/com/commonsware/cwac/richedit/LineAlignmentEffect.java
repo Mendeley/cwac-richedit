@@ -50,13 +50,18 @@ public class LineAlignmentEffect extends Effect<Layout.Alignment> {
     Spannable str=editor.getText();
     Selection selection=new Selection(editor).extendToFullLine(str);
 
+    applyToSpannable(str, selection, alignment);
+  }
+
+  @Override
+  public void applyToSpannable(Spannable str, Selection selection, Layout.Alignment alignment) {
     for (AlignmentSpan.Standard span : getAlignmentSpans(str, selection)) {
       str.removeSpan(span);
     }
 
     if (alignment!=null) {
       str.setSpan(new AlignmentSpan.Standard(alignment), selection.getStart(), selection.getEnd(),
-                  Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+              Spannable.SPAN_INCLUSIVE_INCLUSIVE);
     }
   }
 

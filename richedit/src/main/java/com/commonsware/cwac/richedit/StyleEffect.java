@@ -85,7 +85,8 @@ public class StyleEffect extends Effect<Boolean> {
     applyToSpannable(editor.getText(), new Selection(editor), add);
   }
 
-  void applyToSpannable(Spannable str, Selection selection, Boolean add) {
+  @Override
+  public void applyToSpannable(Spannable str, Selection selection, Boolean add) {
     int prologueStart=Integer.MAX_VALUE;
     int epilogueEnd=-1;
 

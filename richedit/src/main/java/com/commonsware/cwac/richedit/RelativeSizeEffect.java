@@ -57,13 +57,18 @@ public class RelativeSizeEffect extends Effect<Float> {
     Selection selection=new Selection(editor);
     Spannable str=editor.getText();
 
+    applyToSpannable(str, selection, proportion);
+  }
+
+  @Override
+  public void applyToSpannable(Spannable str, Selection selection, Float proportion) {
     for (RelativeSizeSpan span : getRelativeSizeSpans(str, selection)) {
       str.removeSpan(span);
     }
 
     if (proportion != null) {
       str.setSpan(new RelativeSizeSpan(proportion), selection.getStart(),
-                  selection.getEnd(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+              selection.getEnd(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
   }
 

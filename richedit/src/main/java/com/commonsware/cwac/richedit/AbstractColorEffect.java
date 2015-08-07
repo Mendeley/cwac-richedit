@@ -53,17 +53,22 @@ abstract public class AbstractColorEffect<T extends CharacterStyle>
   }
 
   @Override
-  public void applyToSelection(RichEditText editor, Integer value) {
-    Selection selection=new Selection(editor);
-    Spannable str=editor.getText();
-
+  public void applyToSpannable(Spannable str, Selection selection, Integer value) {
     for (T span : getColorSpans(str, selection)) {
       str.removeSpan(span);
     }
 
     if (value != null) {
       str.setSpan(buildColorSpan(value), selection.getStart(),
-                  selection.getEnd(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+              selection.getEnd(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
+  }
+
+  @Override
+  public void applyToSelection(RichEditText editor, Integer value) {
+    Selection selection=new Selection(editor);
+    Spannable str=editor.getText();
+
+    applyToSpannable(str, selection, value);
   }
 }

@@ -64,7 +64,8 @@ public class SimpleBooleanEffect<T> extends Effect<Boolean> {
     applyToSpannable(editor.getText(), new Selection(editor), add);
   }
 
-  void applyToSpannable(Spannable str, Selection selection, Boolean add) {
+  @Override
+  public void applyToSpannable(Spannable str, Selection selection, Boolean add) {
     T[] spans=str.getSpans(selection.getStart(), selection.getEnd(), clazz);
     int prologueStart=Integer.MAX_VALUE;
     int epilogueEnd=-1;
