@@ -18,9 +18,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.os.Parcelable;
 import android.text.Layout;
-import android.text.Spannable;
-import android.text.style.BulletSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.SubscriptSpan;
 import android.text.style.SuperscriptSpan;
@@ -29,7 +28,7 @@ import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.KeyEvent;
 import android.widget.EditText;
-import com.commonsware.cwac.richtextutils.Selection;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -129,22 +128,28 @@ public class RichEditText extends EditText implements
     super(context, attrs, defStyle);
   }
 
+  @Override
+  public Parcelable onSaveInstanceState() {
+    clearComposingText();
+    return super.onSaveInstanceState();
+  }
+
   /*
-   * If there is a registered OnSelectionChangedListener,
-   * checks to see if there are any effects applied to the
-   * current selection, and supplies that information to the
-   * registrant.
-   * 
-   * Uses isSelectionChanging to avoid updating anything
-   * while this callback is in progress (e.g., registrant
-   * updates a ToggleButton, causing its
-   * OnCheckedChangeListener to fire, causing it to try to
-   * update the RichEditText as if the user had clicked upon
-   * it.
-   * 
-   * @see android.widget.TextView#onSelectionChanged(int,
-   * int)
-   */
+     * If there is a registered OnSelectionChangedListener,
+     * checks to see if there are any effects applied to the
+     * current selection, and supplies that information to the
+     * registrant.
+     *
+     * Uses isSelectionChanging to avoid updating anything
+     * while this callback is in progress (e.g., registrant
+     * updates a ToggleButton, causing its
+     * OnCheckedChangeListener to fire, causing it to try to
+     * update the RichEditText as if the user had clicked upon
+     * it.
+     *
+     * @see android.widget.TextView#onSelectionChanged(int,
+     * int)
+     */
   @Override
   public void onSelectionChanged(int start, int end) {
     super.onSelectionChanged(start, end);
