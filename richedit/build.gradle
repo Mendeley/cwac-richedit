@@ -4,10 +4,13 @@ android {
     compileSdkVersion 21
     buildToolsVersion "22.0.1"
 
-    defaultConfig {
+    
+   defaultConfig {
         testApplicationId "com.commonsware.cwac.richedit.test"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
+        minSdkVersion 16
+        targetSdkVersion 23    
+   }   
 
     sourceSets {
         androidTest {
